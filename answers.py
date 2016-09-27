@@ -13,4 +13,6 @@ def ask_user(answers):
 		if user_input == 'пока':
 			break
 
+if __name__ == '__main__':
+
 ask_user(answers)
