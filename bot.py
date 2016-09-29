@@ -7,7 +7,7 @@ def start(bot, update):
 
 def talk_to_me(bot, update):
 	print("Пришло сообщение: " + update.message.text)
-	bot.sendMessage(update.message.chat_id, text=update.message.text)
+	bot.sendMessage(update.message.chat_id, text=update.message.text) #Отвечаем то же самое, что написал человек.
 
 def run_bot():
 	updater = Updater("272924743:AAEjalIxbPU2Pjb0Q4TrCM9oqrqUyZ3tYCY")
