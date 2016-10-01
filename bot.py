@@ -7,7 +7,10 @@ def start(bot, update):
 
 def count(bot, update):
 	print("Вызван /count")
-	bot.sendMessage(update.message.chat_id, text=('В фразе' + ' ' + update.message.text +  ' ' + str(count_words(update.message.text)) + 'слова')) #Отвечаем сколько слов в сторке, которую вводит пользователь
+	
+
+def prosto (bot, update):
+bot.sendMessage(update.message.chat_id, text=('В фразе' + ' ' + update.message.text +  ' ' + str(count_words(update.message.text)) + 'слова')) #Отвечаем сколько слов в сторке, которую вводит пользователь
 
 
 def talk_to_me(bot, update):
