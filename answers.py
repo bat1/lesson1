@@ -2,6 +2,8 @@ answers = {'привет': 'И тебе привет', 'как дела?': 'Лу
 
 
 def get_answer(question, answers):
+	#if key(question нет в answers)
+	#return Ничего не понял. 
 	return answers.get(question)
 
 def ask_user(answers):
