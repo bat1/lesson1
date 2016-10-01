@@ -7,6 +7,7 @@ def start(bot, update):
 
 def count(bot, update):
 	print("Вызван /count")
+	bot.sendMessage(update.message.chat_id, text='Привет! Помогу посчитать слова в строке!')
 	
 
 def prosto (bot, update):
