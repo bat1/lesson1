@@ -16,7 +16,7 @@ def calc(bot, update):
 
 def calc_num(text):
 
-	if '+' and '=' in text:
+	if '+' in text:
 		number1, number2 = text.split('+')
 		sum_numbers = int(number1) + int(number2)
 		print(sum_numbers)
