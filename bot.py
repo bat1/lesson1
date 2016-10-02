@@ -14,6 +14,7 @@ def calc(bot, update):
 
 #def calc_num(bot, update):
 
+
 def calc_num(text):
 
 	if '+' in text:
