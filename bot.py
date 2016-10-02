@@ -10,7 +10,7 @@ def count(bot, update):
 
 def calc(bot, update):
 	print("Вызван /calc")
-	bot.sendMessage(update.message.chat_id, text='Привет! Я бот - калькулятор, делаю вычисления с помощью нейронных сетей, квантовых процессоров и прочей фигни! Хочешь знать сколько будет' + ' ' + '"' + update.message.text[5:] + '"' + '?' +  ' ' + 'Отвечаю: ' + str(calc_num(update.message.text[5:]))) #Считаем арифметические операции
+	bot.sendMessage(update.message.chat_id, text='Привет! Я бот - калькулятор, делаю вычисления с помощью нейронных сетей, квантовых процессоров и прочей фигни! Хочешь знать сколько будет' + ' ' + '"' + update.message.text[5:] + '"' + '?' +  ' ' + '\nОтвечаю: ' + str(calc_num(update.message.text[5:]))) #Считаем арифметические операции
 
 #def calc_num(bot, update):
 
