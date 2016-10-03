@@ -10,7 +10,7 @@ def start(bot, update):
 	bot.sendMessage(update.message.chat_id, text='Привет, человек! Я бот, который помогает учиться на курсе Learn Python')
 
 def count(bot, update):
-	bot.sendMessage(update.message.chat_id, text=('В фразе' + ' ' + '"' + update.message.text[7:] + '"' + ':' +  ' ' + str(count_words(update.message.text[7:])) + ' ' + 'слова')) #Отвечаем сколько слов в сторке, которую вводит пользователь
+	bot.sendMessage(update.message.chat_id, text=('В фразе' + ' ' + '"' + update.message.text[7:] + '"' + ':' +  ' ' + '{}'.format(count_words(update.message.text[7:]) + ' ' + 'слова'))) #Отвечаем сколько слов в сторке, которую вводит пользователь
 
 def calc(bot, update):
 	print("Вызван /calc")
