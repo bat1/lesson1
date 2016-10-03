@@ -18,10 +18,10 @@ def calc(bot, update):
 
 #def calc_num(bot, update):
 
-#def calc_words(text)
-	#text.split
-	#if text in dict_nums_to_words:
-	#number1, number2 = item.get()
+def calc_words(text)
+	text.split
+	if text in dict_nums_to_words:
+	number1, number2 = item.get()
 
 
 
