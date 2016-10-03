@@ -1,4 +1,9 @@
-text = "2/3"
+text = '2/3'
+words = 'сколько будет два плюс три'
+
+dict_nums_to_words = {'один': '1', 'два': '2', 'три': '3', 'четыре': '4', 
+'пять': '5', 'шесть': '6', 'семь': '7', 'восемь': '8', 'девять': '9', 'десять': '10', 'умножить на': '*', 
+'прибавить': '+', 'плюс': '+', 'минус': '-', 'отнять': '-', 'разделить на': '/', 'делить на': '/'}
 
 def calc(text):
 
@@ -26,4 +31,17 @@ def calc(text):
 		print(division)
 		return division
 
-calc(text)
+def calc_word(words):
+	words = 'сколько будет два плюс три'
+	one_word = words.split()
+	for one_word[] in dict_nums_to_words:
+		number1, number2 = dict_nums_to_words.get(one_word)
+		summa = int(number1) + int(number2)
+		print(summa)
+		return summa
+
+
+if __name__ == '__main__':
+
+	calc('text')
+	calc_word(words)

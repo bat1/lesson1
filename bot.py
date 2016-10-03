@@ -1,6 +1,10 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from answers import get_answer, answers
 
+dict_nums_to_words = {'один': '1', 'два': '2', 'три': '3', 'четыре': '4', 
+'пять': '5', 'шесть': '6', 'семь': '7', 'восемь': '8', 'девять': '9', 'десять': '10', 'умножить на': '*', 
+'прибавить': '+', 'плюс': '+', 'минус': '-', 'отнять': '-', 'разделить на': '/', 'делить на': '/'}
+
 def start(bot, update):
 	print("Вызван /start")
 	bot.sendMessage(update.message.chat_id, text='Привет, человек! Я бот, который помогает учиться на курсе Learn Python')
@@ -10,9 +14,16 @@ def count(bot, update):
 
 def calc(bot, update):
 	print("Вызван /calc")
-	bot.sendMessage(update.message.chat_id, text='Привет! Я бот - калькулятор, делаю вычисления с помощью нейронных сетей, квантовых процессоров и прочей фигни! Хочешь знать сколько будет' + ' ' + '"' + update.message.text[5:] + '"' + '?' +  ' ' + '\nОтвечаю: ' + str(calc_num(update.message.text[5:]))) #Считаем арифметические операции
+	bot.sendMessage(update.message.chat_id, text='Привет, человек! \nЯ бот - калькулятор, делаю вычисления с помощью нейронных сетей, квантовых процессоров и прочей фигни! Хочешь знать сколько будет' + ' ' + '"' + update.message.text[5:] + '"' + '?' +  ' ' + '\nОтвечаю: ' + str(calc_num(update.message.text[5:]))) #Считаем арифметические операции
 
 #def calc_num(bot, update):
+
+def calc_words(text)
+	text.split
+	if text in dict_nums_to_words:
+	number1, number2 = item.get()
+
+
 
 
 def calc_num(text):
