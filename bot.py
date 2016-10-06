@@ -1,5 +1,7 @@
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.error import (TelegramError, Unauthorized, BadRequest, TimedOut, ChatMigrated, NetworkError)
 from answers import get_answer, answers
+import ephem
 
 dict_nums_to_words = {'один': '1', 'два': '2', 'три': '3', 'четыре': '4', 
 'пять': '5', 'шесть': '6', 'семь': '7', 'восемь': '8', 'девять': '9', 'десять': '10'}
@@ -20,7 +22,13 @@ def icalc(bot, update):
 
 def calc(bot, update):
 	print("Вызван /calc")
-	bot.sendMessage(update.message.chat_id, text='Привет! Я бот - калькулятор, делаю вычисления с помощью нейронных сетей, квантовых процессоров и прочей фигни! Хочешь знать сколько будет' + ' ' + '"' + update.message.text[5:] + '"' + '?' +  ' ' + 'Отвечаю: ' + str(calc_num(update.message.text[5:]))) #Считаем арифметические операции
+	bot.sendMessage(update.message.chat_id, text='Привет! Я бот - калькулятор, делаю вычисления с помощью нейронных сетей, квантовых процессоров и прочей фигни! Хочешь знать сколько будет' + ' ' + '"' + update.message.text[5:] + '"' + '?' +  ' ' + 'Отвечаю:' + '{}'.format(calc_num(update.message.text[5:]))) #Считаем арифметические операции
+
+
+def ephem_moon(bot, update):
+	print("Вызван /ephem_moon")
+	moon = find_fool_moon(update.message.text)
+	bot.sendMessage(update.message.chat_id, text='Привет, человек! \nТы спрашиваешь: "{}"? \nОтвечаю: {}'.format(update.message.text[12:], moon)) #Считаем дату ближайшей полной луны после указанной в тексте датой
 
 def calc_words(text):
 
@@ -96,6 +104,37 @@ def count_words(text):
 	num_words = len(text.split())
 	return num_words
 
+def find_fool_moon(text, date='2016-10-01'):
+
+	if date in text:
+		date = date.replace('-', '/')
+		print(date)
+		fool_moon = ephem.next_full_moon(date)
+	return 'Следующая дата полнолуния: {}'.format(fool_moon)
+
+def error_callback(bot, update, error):
+    try:
+        raise error
+    except Unauthorized:
+    	print('Ошибка Unauthorized')
+        # remove update.message.chat_id from conversation list
+    except BadRequest:
+    	print('Ошибка BadRequest')
+        # handle malformed requests - read more below!
+    except TimedOut:
+    	print('Ошибка TimedOut')
+        # handle slow connection problems
+    except NetworkError:
+    	print('Ошибка NetworkError')
+        # handle other connection problems
+    except ChatMigrated as e:
+    	print('Ошибка ChatMigrated')
+        # the chat_id of a group has changed, use e.new_chat_id instead
+    except TelegramError:
+    	print('Ошибка TelegramError')
+        # handle all other telegram related errors
+
+
 def run_bot():
 	updater = Updater("272924743:AAEjalIxbPU2Pjb0Q4TrCM9oqrqUyZ3tYCY")
 	dp = updater.dispatcher
@@ -103,6 +142,8 @@ def run_bot():
 	dp.add_handler(CommandHandler("count", count))
 	dp.add_handler(CommandHandler("calc", calc))
 	dp.add_handler(CommandHandler("icalc", icalc))
+	dp.add_handler(CommandHandler("ephem_moon", ephem_moon))
+	dp.add_error_handler(error_callback)
 	dp.add_handler(MessageHandler([Filters.text], talk_to_me))
 	updater.start_polling()
 	updater.idle()
@@ -113,3 +154,4 @@ if __name__ == '__main__':
 	calc_num(text)
 	calc_words(text)
 	actions(flatten)
+

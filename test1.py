@@ -1,10 +1,10 @@
+import ephem
+
 dict_nums_to_words = {'один': '1', 'два': '2', 'три': '3', 'четыре': '4', 
 'пять': '5', 'шесть': '6', 'семь': '7', 'восемь': '8', 'девять': '9', 'десять': '10'}
 
 dict_actions = {'умножить': '*', 
 	'прибавить': '+', 'плюс': '+', 'минус': '-', 'отнять': '-', 'разделить': '/', 'делить': '/'}
-
-
 
 
 def calc_words(text):
@@ -32,6 +32,16 @@ def actions(flatten):
 print(calc_words('сколько будет два плюс три'))
 print(actions(['2','+','3']))
 
+
+def find_fool_moon(text):
+	
+	date = '2016-10-01'
+	if date in text:
+		date = date.replace('-', '/')
+		date_next_full_moon = ephem.next_full_moon(date)
+	return date_next_full_moon
+
+print(find_fool_moon('Когда ближайшее полнолуние после 2016-10-01?'))
 
 
 #	if item in separated_words:
